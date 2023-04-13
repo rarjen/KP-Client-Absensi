@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Card } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import PAlert from "../../components/Alert";
-import PForm from "./form";
+import PCarousel from "../../components/Carousel";
+import LForm from "./loginForm";
 import { postData } from "../../utils/fetch";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/auth/actions";
-import "./index.css";
+import "./style.css";
 
 function PageSignin() {
   const dispatch = useDispatch();
@@ -59,28 +60,32 @@ function PageSignin() {
       <div className="m-auto" style={{ width: "50%" }}>
         {alert.status && <PAlert type={alert.type} message={alert.message} />}
       </div>
-      {/* <Card style={{ width: "50%" }} className="m-auto mt-5 p-2">
-        <Card.Body>
-          <Card.Title className="text-center">Form Sign In</Card.Title>
-          <PForm
-            form={form}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            isLoading={isLoading}
-          />
-        </Card.Body>
-      </Card> */}
-
-      <section class="login">
-        <div class="login-left">
-          <PForm
-            form={form}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            isLoading={isLoading}
-          />
+      <section className="login d-flex">
+        <div className="login-left w-50 h-100">
+          <div className="row justify-content-center align-item-center h-90 ">
+            <div className="col-7">
+              <div className="header">
+                <h1>Welcome back</h1>
+                <p>Welcome back! Please enter your details.</p>
+              </div>
+              <div className="loginForm">
+                <LForm
+                  form={form}
+                  handleChange={handleChange}
+                  handleSubmit={handleSubmit}
+                  isLoading={isLoading}
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="login-right"></div>
+        <div className="login-right w-50 h-100">
+          <div className="row justify-content-center align-item-center h-100">
+            <div className="col-12">
+              <PCarousel />
+            </div>
+          </div>
+        </div>
       </section>
     </Container>
   );
