@@ -1,0 +1,28 @@
+/* .login {
+    height: 100vh;
+} */
+/* h1{
+    position:absolute;
+    width: 244px;
+    height: 48px;
+} */
+
+
+.header p{
+    color: #737373;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.loginForm a{
+    font-weight: 400;
+    font-size: 14px;
+    color: #737373;
+}
+
+.button-signIn{
+    width: 100%;
+}
+
+
+
