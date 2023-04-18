@@ -3,6 +3,7 @@ import GuardRoute from "../components/GuardRoute";
 import GuestOnlyRoute from "../components/GuestOnlyRoute";
 
 import Login from "../pages/signin";
+import Register from "../pages/signup";
 import { HomeRoute } from "./HomeRoute";
 import { CategoriesRoute } from "./CategoriesRoute";
 import { TalentsRoute } from "./TalentsRoute";
@@ -22,6 +23,7 @@ export function AppRoutes() {
           </GuestOnlyRoute>
         }
       />
+      <Route path="/register" element={<Register />} />
 
       <Route
         path="/"
