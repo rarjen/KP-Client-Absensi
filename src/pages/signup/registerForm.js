@@ -2,11 +2,8 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import PButton from "../../components/Button";
-import PIButton from "../../components/ButtonWithIcon";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import TextInputWithLabel from "../../components/TextInputWithLabel";
 import "./style.css";
-// import iconGoogle from "../../../public/images/logo/google.png";
 
 export default function FormSignup({
   form,
@@ -42,7 +39,7 @@ export default function FormSignup({
         onChange={handleChange}
       />
 
-      <div className="mt-2">
+      <div className="mt-4">
         <PButton
           loading={isLoading}
           disabled={isLoading}
@@ -54,21 +51,22 @@ export default function FormSignup({
         </PButton>
       </div>
 
-      <div className="mt-2">
-        <PIButton
-          icon={faGoogle}
-          loading={isLoading}
-          disabled={isLoading}
-          action={handleSubmit}
-          variant="outline-secondary"
-          className="button-signIn"
-        >
-          Sign Up With Google
-        </PIButton>
+      <div className="mt-2 confirm">
+        <Form.Check
+          inline
+          type={"checkbox"}
+          // label={"I agree all statements in Terms of service"}
+        />
+        <span>
+          I agree all statements in{" "}
+          <NavLink to={"/#"} className={"text-decoration-none"}>
+            Terms of service
+          </NavLink>
+        </span>
       </div>
 
-      <div className="text-center my-1">
-        <span>
+      <div className="text-center mt-1">
+        <span className="sign-in">
           Have an account?{" "}
           <NavLink to="/signin" className={"text-decoration-none"}>
             Sign In here

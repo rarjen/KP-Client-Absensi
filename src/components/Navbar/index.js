@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
-import NavLink from "../NavAccess";
-import { useNavigate } from "react-router-dom";
-import {
-  accessCategories,
-  accessTalents,
-  accessEvents,
-  accessParticipants,
-  accessPayments,
-  accessOrders,
-} from "../../const/access";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+// import NavLink from "../NavAccess";
+import { useNavigate, NavLink } from "react-router-dom";
+// import {
+//   accessCategories,
+//   accessTalents,
+//   accessEvents,
+//   accessParticipants,
+//   accessPayments,
+//   accessOrders,
+// } from "../../const/access";
 
-function PNavbar() {
+export default function PNavbar() {
   const navigate = useNavigate();
   const [role, setRole] = useState(null);
 
-  useEffect(() => {
-    const fetchData = () => {
-      let { role } = localStorage.getItem("auth")
-        ? JSON.parse(localStorage.getItem("auth"))
-        : {};
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     let { role } = localStorage.getItem("auth")
+  //       ? JSON.parse(localStorage.getItem("auth"))
+  //       : {};
 
-      setRole(role);
-    };
-    fetchData();
-  }, []);
+  //     setRole(role);
+  //   };
+  //   fetchData();
+  // }, []);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -32,66 +32,73 @@ function PNavbar() {
   };
 
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="light" variant="light" className="navbar">
       <Container>
         <Navbar.Brand href="#home">Dashboard</Navbar.Brand>
+        <div className="col-2">
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </div>
         <Nav className="me-auto">
-          <NavLink
-            role={role}
-            roles={accessCategories.lihat}
-            action={() => navigate("/")}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            role={role}
-            roles={accessCategories.lihat}
-            action={() => navigate("/categories")}
-          >
-            Categories
-          </NavLink>
-          <NavLink
-            role={role}
-            roles={accessTalents.lihat}
-            action={() => navigate("/talents")}
-          >
-            Talents
-          </NavLink>
-          <NavLink
-            role={role}
-            roles={accessPayments.lihat}
-            action={() => navigate("/payments")}
-          >
-            Payment
-          </NavLink>
+          <NavDropdown title="KATEGORI" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">
+              Another action
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <NavLink to="/something" className={"text-decoration-none"}>
+                Something
+              </NavLink>
+            </NavDropdown.Item>
+          </NavDropdown>
+
+          <NavDropdown title="TEKNOLOGI" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">
+              Another action
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <NavLink to="/something" className={"text-decoration-none"}>
+                Something
+              </NavLink>
+            </NavDropdown.Item>
+          </NavDropdown>
+
+          <NavDropdown title="EXPLORE" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">
+              Another action
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <NavLink to="/something" className={"text-decoration-none"}>
+                Something
+              </NavLink>
+            </NavDropdown.Item>
+          </NavDropdown>
+
+          <NavDropdown title="PATNERSHIP" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">
+              Another action
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <NavLink to="/something" className={"text-decoration-none"}>
+                Something
+              </NavLink>
+            </NavDropdown.Item>
+          </NavDropdown>
+
           {/* <NavLink
-            role={role}
-            roles={organizers.lihat}
-            action={() => navigate("/organizers")}
-          >
-            Oranizer
-          </NavLink> */}
-          <NavLink
             role={role}
             roles={accessEvents.lihat}
             action={() => navigate("/events")}
           >
             Events
-          </NavLink>
-          <NavLink
-            role={role}
-            roles={accessParticipants.lihat}
-            action={() => navigate("/participant")}
-          >
-            Participant
-          </NavLink>
-          <NavLink
-            role={role}
-            roles={accessOrders.lihat}
-            action={() => navigate("/orders")}
-          >
-            Orders
-          </NavLink>
+          </NavLink> */}
         </Nav>
         <Nav className="justify-content-end">
           <Nav.Link onClick={() => handleLogout()}>Logout</Nav.Link>
@@ -100,5 +107,3 @@ function PNavbar() {
     </Navbar>
   );
 }
-
-export default PNavbar;

@@ -6,7 +6,6 @@ import PIButton from "../../components/ButtonWithIcon";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import TextInputWithLabel from "../../components/TextInputWithLabel";
 import "./style.css";
-// import iconGoogle from "../../../public/images/logo/google.png";
 
 export default function FormSignin({
   form,

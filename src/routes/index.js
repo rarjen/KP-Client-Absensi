@@ -10,6 +10,7 @@ import { TalentsRoute } from "./TalentsRoute";
 import { PaymentsRoute } from "./PaymentsRoute";
 import { EventsRoute } from "./EventsRoute";
 import { OrdersRoute } from "./OrdersRoute";
+import { LibraryRoute } from "./LibraryRoute";
 import PNavbar from "../components/Navbar";
 
 export function AppRoutes() {
@@ -18,9 +19,9 @@ export function AppRoutes() {
       <Route
         path="/signin"
         element={
-          <GuestOnlyRoute>
-            <Login />
-          </GuestOnlyRoute>
+          // <GuestOnlyRoute>
+          <Login />
+          // </GuestOnlyRoute>
         }
       />
       <Route path="/register" element={<Register />} />
@@ -30,7 +31,7 @@ export function AppRoutes() {
         element={
           <>
             <PNavbar />
-            <GuardRoute />
+            {/* <GuardRoute /> */}
           </>
         }
       >
@@ -40,6 +41,7 @@ export function AppRoutes() {
         <Route path="payments/*" element={<PaymentsRoute />} />
         <Route path="events/*" element={<EventsRoute />} />
         <Route path="orders/*" element={<OrdersRoute />} />
+        <Route path="library/*" element={<LibraryRoute />} />
         <Route path="/" element={<Navigate to="/dashboard" replace={true} />} />
       </Route>
     </Routes>
