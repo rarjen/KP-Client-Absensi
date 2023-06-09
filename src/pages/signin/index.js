@@ -35,7 +35,7 @@ function PageSignin() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    const res = await postData(`/cms/auth/signin`, form);
+    const res = await postData(`/auth/login`, form);
 
     // Dispatch
     if (res?.data?.data) {
