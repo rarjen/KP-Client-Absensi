@@ -18,8 +18,6 @@ export default function KaryawanPage() {
 
   const notif = useSelector((state) => state.notif);
   const karyawans = useSelector((state) => state.karyawans);
-  const lists = useSelector((state) => state.lists);
-  console.log(lists);
 
   useEffect(() => {
     dispatch(fetchKaryawans());
@@ -27,7 +25,7 @@ export default function KaryawanPage() {
     dispatch(fetchListShifts());
   }, [dispatch]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (karyawan_id) => {
     Swal.fire({
       title: "Apa kamu yakin?",
       text: "Anda tidak akan dapat mengembalikan ini!",
@@ -39,7 +37,7 @@ export default function KaryawanPage() {
       cancelButtonText: "Batal",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await deleteData(`/karyawan/delete/${id}`);
+        const res = await deleteData(`/karyawan/${karyawan_id}`);
         dispatch(
           setNotif(
             true,
@@ -85,7 +83,7 @@ export default function KaryawanPage() {
           "nomer_rekening",
         ]}
         editUrl={`/karyawan/edit`}
-        deleteAction={(id) => handleDelete(id)}
+        deleteAction={(karyawan_id) => handleDelete(karyawan_id)}
         withoutPagination
       />
     </Container>
