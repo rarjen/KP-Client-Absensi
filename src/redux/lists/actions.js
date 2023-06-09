@@ -1,161 +1,112 @@
 import {
-  START_FETCHING_LISTS_CATEGORIES,
-  SUCCESS_FETCHING_LISTS_CATEGORIES,
-  ERROR_FETCHING_LISTS_CATEGORIES,
-  START_FETCHING_LISTS_TALENTS,
-  ERROR_FETCHING_LISTS_TALENTS,
-  SUCCESS_FETCHING_LISTS_TALENTS,
-  START_FETCHING_LISTS_EVENTS,
-  ERROR_FETCHING_LISTS_EVENTS,
-  SUCCESS_FETCHING_LISTS_EVENTS,
+  START_FETCHING_LISTS_JABATANS,
+  SUCCESS_FETCHING_LISTS_JABATANS,
+  ERROR_FETCHING_LISTS_JABATANS,
+  START_FETCHING_LISTS_SHIFTS,
+  ERROR_FETCHING_LISTS_SHIFTS,
+  SUCCESS_FETCHING_LISTS_SHIFTS,
 } from "./constants";
 
 import { getData } from "../../utils/fetch";
 import debounce from "debounce-promise";
 
-let debouncedFetchListsCategories = debounce(getData, 1000);
-let debouncedFetchListsTalents = debounce(getData, 1000);
-let debouncedFetchListsEvents = debounce(getData, 1000);
+let debouncedFetchListsJabatans = debounce(getData, 1000);
+let debouncedFetchListsShifts = debounce(getData, 1000);
 
-export const startFetchingListsCategories = () => {
+// Jabatan
+
+export const startFetchingListsJabatans = () => {
   return {
-    type: START_FETCHING_LISTS_CATEGORIES,
+    type: START_FETCHING_LISTS_JABATANS,
   };
 };
 
-export const successFetchingListCategories = ({ categories }) => {
+export const successFetchingListJabatans = ({ jabatans }) => {
   return {
-    type: SUCCESS_FETCHING_LISTS_CATEGORIES,
-    categories,
+    type: SUCCESS_FETCHING_LISTS_JABATANS,
+    jabatans,
   };
 };
 
-export const errorFetchingListCategories = () => {
+export const errorFetchingListJabatans = () => {
   return {
-    type: ERROR_FETCHING_LISTS_CATEGORIES,
+    type: ERROR_FETCHING_LISTS_JABATANS,
   };
 };
 
-export const fetchListCategories = () => {
+export const fetchListJabatans = () => {
   return async (dispatch) => {
-    dispatch(startFetchingListsCategories());
+    dispatch(startFetchingListsJabatans());
 
     try {
-      let res = await debouncedFetchListsCategories("/cms/categories");
+      let res = await debouncedFetchListsJabatans("/jabatan");
 
       let _temp = [];
 
       res.data.data.forEach((res) => {
         _temp.push({
-          value: res._id,
-          label: res.name,
-          target: { value: res._id, name: "category" },
+          value: res.id,
+          label: res.jabatan,
+          target: { value: res.id, name: "jabatan" },
         });
       });
 
       dispatch(
-        successFetchingListCategories({
-          categories: _temp,
+        successFetchingListJabatans({
+          jabatans: _temp,
         })
       );
     } catch (error) {
-      dispatch(errorFetchingListCategories());
+      dispatch(errorFetchingListJabatans());
     }
   };
 };
 
-export const startFetchingListsTalents = () => {
+export const startFetchingListsShifts = () => {
   return {
-    type: START_FETCHING_LISTS_TALENTS,
+    type: START_FETCHING_LISTS_SHIFTS,
   };
 };
 
-export const successFetchingListTalents = ({ talents }) => {
+export const successFetchingListShifts = ({ shifts }) => {
   return {
-    type: SUCCESS_FETCHING_LISTS_TALENTS,
-    talents,
+    type: SUCCESS_FETCHING_LISTS_SHIFTS,
+    shifts,
   };
 };
 
-export const errorFetchingListTalents = () => {
+export const errorFetchingListShifts = () => {
   return {
-    type: ERROR_FETCHING_LISTS_TALENTS,
+    type: ERROR_FETCHING_LISTS_SHIFTS,
   };
 };
 
-export const fetchListTalents = () => {
+// SHIFT
+
+export const fetchListShifts = () => {
   return async (dispatch) => {
-    dispatch(startFetchingListsTalents());
+    dispatch(startFetchingListsShifts());
 
     try {
-      let res = await debouncedFetchListsTalents("/cms/talents");
+      let res = await debouncedFetchListsShifts("/shift");
 
       let _temp = [];
 
       res.data.data.forEach((res) => {
         _temp.push({
-          value: res._id,
-          label: res.name,
-          target: { value: res._id, name: "talents" },
+          value: res.id,
+          label: res.shift,
+          target: { value: res.id, name: "shift" },
         });
       });
 
       dispatch(
-        successFetchingListTalents({
-          talents: _temp,
+        successFetchingListShifts({
+          shifts: _temp,
         })
       );
     } catch (error) {
-      dispatch(errorFetchingListTalents());
-    }
-  };
-};
-
-// event
-
-export const startFetchingListsEvents = () => {
-  return {
-    type: START_FETCHING_LISTS_EVENTS,
-  };
-};
-
-export const successFetchingListEvents = ({ events }) => {
-  return {
-    type: SUCCESS_FETCHING_LISTS_EVENTS,
-    events,
-  };
-};
-
-export const errorFetchingListEvents = () => {
-  return {
-    type: ERROR_FETCHING_LISTS_EVENTS,
-  };
-};
-
-export const fetchListEvents = () => {
-  return async (dispatch) => {
-    dispatch(startFetchingListsEvents());
-
-    try {
-      let res = await debouncedFetchListsEvents("/cms/events");
-
-      let _temp = [];
-
-      res.data.data.forEach((res) => {
-        _temp.push({
-          value: res._id,
-          label: res.title,
-          target: { value: res._id, name: "event" },
-        });
-      });
-
-      dispatch(
-        successFetchingListEvents({
-          events: _temp,
-        })
-      );
-    } catch (error) {
-      dispatch(errorFetchingListEvents());
+      dispatch(errorFetchingListShifts());
     }
   };
 };
