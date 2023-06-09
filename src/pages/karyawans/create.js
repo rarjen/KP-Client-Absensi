@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import PBreadCrumb from "../../components/BreadCrumb";
 import PAlert from "../../components/Alert";
 import Form from "./form";
 import { postData } from "../../utils/fetch";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setNotif } from "../../redux/notif/actions";
+import { fetchListJabatans, fetchListShifts } from "../../redux/lists/actions";
 
-function KaryawanCreate() {
+export default function KaryawanCreate() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const lists = useSelector((state) => state.lists);
+
   const [form, setForm] = useState({
-    jabatan: 0,
-    shift: 0,
+    jabatan: null,
+    shift: null,
     full_name: "",
     email: "",
     nomer_karyawan: "",
@@ -29,6 +32,11 @@ function KaryawanCreate() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    dispatch(fetchListJabatans());
+    dispatch(fetchListShifts());
+  }, [dispatch]);
+
   const handleChange = (e) => {
     if (e.target.name === "jabatan" || e.target.name === "shift") {
       setForm({ ...form, [e.target.name]: e });
@@ -39,7 +47,18 @@ function KaryawanCreate() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    const res = await postData("/karyawan/create", form);
+
+    const payload = {
+      jabatan_id: form.jabatan.value,
+      shift_id: form.shift.value,
+      full_name: form.full_name,
+      email: form.email,
+      nomer_karyawan: form.nomer_karyawan,
+      nomer_telepon: form.nomer_telepon,
+      nomer_rekening: form.nomer_rekening,
+    };
+
+    const res = await postData("/karyawan/create", payload);
     if (res?.data?.data) {
       dispatch(
         setNotif(
@@ -48,7 +67,7 @@ function KaryawanCreate() {
           `Berhasil tambah karyawan ${res.data.data.full_name}`
         )
       );
-      navigate("/categories");
+      navigate("/karyawan");
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -72,11 +91,10 @@ function KaryawanCreate() {
       <Form
         form={form}
         isLoading={isLoading}
+        lists={lists}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
     </Container>
   );
 }
-
-export default KaryawanCreate;
