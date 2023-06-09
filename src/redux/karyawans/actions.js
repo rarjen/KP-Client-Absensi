@@ -1,7 +1,7 @@
 import {
-  START_FETCHING_KARYAWANS,
-  SUCCESS_FETCHING_KARYAWANS,
-  ERROR_FETCHING_KARYAWANS,
+  START_FETCHING_KARYAWAN,
+  SUCCESS_FETCHING_KARYAWAN,
+  ERROR_FETCHING_KARYAWAN,
 } from "./constants";
 
 import { getData } from "../../utils/fetch";
@@ -12,20 +12,20 @@ let debouncedFetchKaryawans = debounce(getData, 1000);
 
 export const startFetchingKaryawans = () => {
   return {
-    type: START_FETCHING_KARYAWANS,
+    type: START_FETCHING_KARYAWAN,
   };
 };
 
 export const successFetchingKaryawans = ({ karyawans }) => {
   return {
-    type: SUCCESS_FETCHING_KARYAWANS,
+    type: SUCCESS_FETCHING_KARYAWAN,
     karyawans,
   };
 };
 
 export const errorFetchingKaryawans = () => {
   return {
-    type: ERROR_FETCHING_KARYAWANS,
+    type: ERROR_FETCHING_KARYAWAN,
   };
 };
 
