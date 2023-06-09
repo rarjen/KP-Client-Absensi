@@ -17,6 +17,7 @@ export default function TableWithAction({
   status,
   pages,
 }) {
+  // console.log(tbody);
   return (
     <>
       <Table striped bordered hover>
