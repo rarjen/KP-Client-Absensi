@@ -1,7 +1,7 @@
 import {
-  ERROR_FETCHING_KARYAWANS,
-  START_FETCHING_KARYAWANS,
-  SUCCESS_FETCHING_KARYAWANS,
+  ERROR_FETCHING_KARYAWAN,
+  START_FETCHING_KARYAWAN,
+  SUCCESS_FETCHING_KARYAWAN,
 } from "./constants";
 
 const statuslist = {
@@ -18,13 +18,13 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case START_FETCHING_KARYAWANS:
+    case START_FETCHING_KARYAWAN:
       return { ...state, status: statuslist.process };
 
-    case ERROR_FETCHING_KARYAWANS:
+    case ERROR_FETCHING_KARYAWAN:
       return { ...state, status: statuslist.error };
 
-    case SUCCESS_FETCHING_KARYAWANS:
+    case SUCCESS_FETCHING_KARYAWAN:
       return { ...state, status: statuslist.success, data: action.karyawans };
 
     default:
