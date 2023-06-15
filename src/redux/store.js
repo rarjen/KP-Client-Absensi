@@ -9,6 +9,9 @@ import thunk from "redux-thunk";
 import authReducer from "./auth/reducer";
 import notifReducer from "./notif/reducer";
 import karyawansReducer from "./karyawans/reducer";
+import jabatansReducer from "./jabatans/reducer";
+import shiftsReducer from "./shifts/reducer";
+import absensisReducer from "./absensis/reducer";
 import listsReducer from "./lists/reducer";
 
 const composerEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,6 +21,9 @@ const rootReducers = combineReducers({
   auth: authReducer,
   notif: notifReducer,
   karyawans: karyawansReducer,
+  jabatans: jabatansReducer,
+  shifts: shiftsReducer,
+  absensis: absensisReducer,
   lists: listsReducer,
 });
 const store = createStore(
