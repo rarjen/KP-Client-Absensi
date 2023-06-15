@@ -11,6 +11,7 @@ import { setNotif } from "../../redux/notif/actions";
 function CategoryCreate() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [form, setForm] = useState({
     name: "",
   });
@@ -29,7 +30,9 @@ function CategoryCreate() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
+
     const res = await postData("/cms/categories", form);
+
     if (res?.data?.data) {
       dispatch(
         setNotif(
