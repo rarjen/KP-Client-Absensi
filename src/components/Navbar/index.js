@@ -23,9 +23,21 @@ export default function PNavbar() {
           </Nav.Link>
           <Nav.Link
             className="text-decoration-none"
-            onClick={() => navigate("/Jabatan")}
+            onClick={() => navigate("/jabatan")}
           >
             Jabatan
+          </Nav.Link>
+          <Nav.Link
+            className="text-decoration-none"
+            onClick={() => navigate("/shift")}
+          >
+            Shift
+          </Nav.Link>
+          <Nav.Link
+            className="text-decoration-none"
+            onClick={() => navigate("/absensi")}
+          >
+            Absensi
           </Nav.Link>
         </Nav>
         <Nav className="justify-content-end">
