@@ -9,6 +9,7 @@ import { KaryawanRoute } from "./KaryawansRoute";
 import { JabatanRoute } from "./JabatanRoute";
 import { ShiftRoute } from "./ShiftRoute";
 import { AbsensiRoute } from "./AbsensiRoute";
+import { PostAbsensiRoute } from "./PostAbsenRoute";
 
 import PNavbar from "../components/Navbar";
 
@@ -24,6 +25,7 @@ export function AppRoutes() {
         }
       />
       <Route path="/register" element={<Register />} />
+      <Route path="/postAbsen" element={<PostAbsensiRoute />} />
 
       <Route
         path="/"
