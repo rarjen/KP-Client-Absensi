@@ -1,0 +1,4 @@
+export const START_FETCHING_JABATAN = "redux/jabatans/START_FETCHING_JABATAN";
+export const SUCCESS_FETCHING_JABATAN =
+  "redux/jabatans/SUCCESS_FETCHING_JABATAN";
+export const ERROR_FETCHING_JABATAN = "redux/jabatans/ERROR_FETCHING_JABATAN";
