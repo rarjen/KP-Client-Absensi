@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
-// import { useNavigate } from "react-router-dom";
 import BreadCrumb from "../../components/BreadCrumb";
-// import Button from "../../components/Button";
 import PTableWithAction from "../../components/TableWithAction";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAbsensis } from "../../redux/absensis/actions";
 
 export default function JabatanPage() {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const absensis = useSelector((state) => state.absensis);
