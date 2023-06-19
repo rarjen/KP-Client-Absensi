@@ -1,0 +1,4 @@
+export const START_FETCHING_ABSENSI = "redux/absensis/START_FETCHING_ABSENSI";
+export const SUCCESS_FETCHING_ABSENSI =
+  "redux/absensis/SUCCESS_FETCHING_ABSENSI";
+export const ERROR_FETCHING_ABSENSI = "redux/absensis/ERROR_FETCHING_ABSENSI";
