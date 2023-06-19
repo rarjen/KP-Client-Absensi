@@ -7,7 +7,11 @@ import { postData } from "../../utils/fetch";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setNotif } from "../../redux/notif/actions";
-import { fetchListJabatans, fetchListShifts } from "../../redux/lists/actions";
+import {
+  fetchListJabatans,
+  fetchListShifts,
+  fetchListKaryawans,
+} from "../../redux/lists/actions";
 
 export default function KaryawanCreate() {
   const navigate = useNavigate();
@@ -35,6 +39,7 @@ export default function KaryawanCreate() {
   useEffect(() => {
     dispatch(fetchListJabatans());
     dispatch(fetchListShifts());
+    dispatch(fetchListKaryawans());
   }, [dispatch]);
 
   const handleChange = (e) => {
